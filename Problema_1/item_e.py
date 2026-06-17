@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from item_b import gradiente_descendente, armijo
+from problema_1.item_b import gradiente_descendente, armijo
 
 # ──────────────────────────────────────────────
 # Item e) Efeito do condicionamento da Hessiana

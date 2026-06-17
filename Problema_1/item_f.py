@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from item_a import f, grad_f, hess_f
-from item_b import gradiente_descendente, passo_constante, armijo, backtracking
-from item_c import newton
+from problema_1.item_a import f, grad_f, hess_f
+from problema_1.item_b import gradiente_descendente, passo_constante, armijo, backtracking
+from problema_1.item_c import newton
 
 # ──────────────────────────────────────────────
 # Item f) Comparação GD vs Newton
