@@ -17,16 +17,26 @@ def newton(f, grad, hess, x0, step_strategy,
     n_evals_f  = 1
     n_evals_g  = 1
     n_evals_H  = 0
+    status     = "limite de iterações atingido"
 
     for k in range(max_iter):
         g = grad(x);  n_evals_g += 1
         if np.linalg.norm(g) <= tol:
+            status = "convergiu"
             break
 
         H = hess(x);  n_evals_H += 1
 
         # Direção de Newton: resolve H * d = -g
-        d = np.linalg.solve(H, -g)
+        # Trata Hessiana singular/quase-singular (comum em funções não-convexas)
+        try:
+            if abs(np.linalg.det(H)) < 1e-10:
+                status = "interrompido: Hessiana singular/quase-singular"
+                break
+            d = np.linalg.solve(H, -g)
+        except np.linalg.LinAlgError:
+            status = "interrompido: Hessiana singular (LinAlgError)"
+            break
 
         alpha, ls_evals = step_strategy(x, d, f=f, grad=grad, **step_kwargs)
         n_evals_f += ls_evals
@@ -48,6 +58,7 @@ def newton(f, grad, hess, x0, step_strategy,
         "hist_f":      np.array(hist_f),
         "hist_gnorm":  np.array(hist_gnorm),
         "hist_x":      np.array(hist_x),
+        "status":      status,
     }
 
 # ──────────────────────────────────────────────
