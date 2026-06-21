@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 from problema_1.item_a import f, grad_f, hess_f
 from problema_1.item_b import passo_constante, armijo, backtracking
 
-# ──────────────────────────────────────────────
-# Método de Newton
-# ──────────────────────────────────────────────
+# Método de Newton ──────────────────────────────────────────────
 
 def newton(f, grad, hess, x0, step_strategy,
            tol=1e-6, max_iter=1000, **step_kwargs):
@@ -61,9 +59,8 @@ def newton(f, grad, hess, x0, step_strategy,
         "status":      status,
     }
 
-# ──────────────────────────────────────────────
-# Execução — ponto inicial x0 = (1, 1)
-# ──────────────────────────────────────────────
+# Execução — ponto inicial x0 = (1, 1) ──────────────────────────────────────────────
+
 if __name__ == "__main__":
     x0 = np.array([1.0, 1.0])
 
@@ -76,9 +73,8 @@ if __name__ == "__main__":
             f, grad_f, hess_f, x0, backtracking, alpha0=1.0, rho=0.8, c=1e-4),
     }
 
-    # ──────────────────────────────────────────────
-    # Tabela de resultados
-    # ──────────────────────────────────────────────
+    # Tabela de resultados ──────────────────────────────────────────────
+
     print("=" * 80)
     print("Problema 1 — Item c)  Método de Newton  (x0 = [1, 1])")
     print("=" * 80)
@@ -90,9 +86,8 @@ if __name__ == "__main__":
               f"{r['gnorm_final']:>12.4e} {r['n_evals_f']:>8} "
               f"{r['n_evals_g']:>8} {r['n_evals_H']:>8}")
 
-    # ──────────────────────────────────────────────
-    # Figura 1 — Convergência
-    # ──────────────────────────────────────────────
+    # Figura 1 — Convergência ──────────────────────────────────────────────
+
     cores = ["tab:blue", "tab:orange", "tab:green"]
     fig, axes = plt.subplots(1, 2, figsize=(13, 5))
     fig.suptitle("Problema 1 — Item c)  Método de Newton", fontsize=13)
@@ -115,9 +110,8 @@ if __name__ == "__main__":
     plt.savefig("prob1_c_convergencia.png", dpi=150)
     plt.close()
 
-    # ──────────────────────────────────────────────
-    # Figura 2 — Curvas de nível + trajetórias
-    # ──────────────────────────────────────────────
+    # Figura 2 — Curvas de nível + trajetórias ──────────────────────────────────────────────
+
     fig2, axes2 = plt.subplots(1, 3, figsize=(15, 5))
     fig2.suptitle("Problema 1 — Item c)  Curvas de nível + Trajetórias (Newton)", fontsize=13)
 
@@ -142,5 +136,3 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.savefig("prob1_c_trajetorias.png", dpi=150)
     plt.close()
-
-    print("\nGráficos salvos com sucesso.")

@@ -5,14 +5,14 @@ from problema_1.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, passo_constante, armijo, backtracking
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Ponto inicial
-# ──────────────────────────────────────────────
+
+# Ponto inicial ──────────────────────────────────────────────
+
 x0 = np.array([1.0, 1.0])
 
-# ──────────────────────────────────────────────
-# Execução de todos os métodos
-# ──────────────────────────────────────────────
+
+# Execução de todos os métodos ──────────────────────────────────────────────
+
 resultados = {
     "GD + Passo Constante": gradiente_descendente(
         f, grad_f, x0, passo_constante, alpha=9.99e-4),
@@ -37,9 +37,9 @@ cores = {
     "Newton + Backtracking": ("tab:green",  "--"),
 }
 
-# ──────────────────────────────────────────────
-# Figura 1 — f(xₖ) vs iteração (todos juntos)
-# ──────────────────────────────────────────────
+
+# Figura 1 — f(xₖ) vs iteração (todos juntos)  ──────────────────────────────────────────────
+
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 fig.suptitle("Problema 1 — Item d)  Comparação de Trajetórias", fontsize=13)
 
@@ -62,9 +62,9 @@ plt.tight_layout()
 plt.savefig("prob1_d_convergencia_comparacao.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Curvas de nível + trajetórias (todos juntos)
-# ──────────────────────────────────────────────
+
+# Figura 2 — Curvas de nível + trajetórias (todos juntos) ──────────────────────────────────────────────
+
 X  = np.linspace(-1.1, 1.1, 400)
 Y  = np.linspace(-1.1, 1.1, 400)
 Xg, Yg = np.meshgrid(X, Y)
@@ -95,9 +95,8 @@ plt.tight_layout()
 plt.savefig("prob1_d_trajetorias_comparacao.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 3 — Curvas de nível separadas por família
-# ──────────────────────────────────────────────
+# Figura 3 — Curvas de nível separadas por família ──────────────────────────────────────────────
+
 familias = {
     "Gradiente Descendente": ["GD + Passo Constante", "GD + Armijo", "GD + Backtracking"],
     "Newton":                ["Newton + Passo Const.", "Newton + Armijo", "Newton + Backtracking"],
@@ -127,9 +126,8 @@ plt.tight_layout()
 plt.savefig("prob1_d_trajetorias_por_familia.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Tabela comparativa final
-# ──────────────────────────────────────────────
+# Tabela comparativa final ──────────────────────────────────────────────
+
 print("=" * 85)
 print("Problema 1 — Item d)  Comparação geral")
 print("=" * 85)
@@ -139,5 +137,3 @@ for nome, r in resultados.items():
     print(f"{nome:<28} {r['n_iter']:>6} {r['f_opt']:>12.4e} "
           f"{r['gnorm_final']:>12.4e} {r['n_evals_f']:>8} "
           f"{r['n_evals_g']:>8} {r['n_evals_H']:>8}")
-
-print("\nGráficos salvos com sucesso.")

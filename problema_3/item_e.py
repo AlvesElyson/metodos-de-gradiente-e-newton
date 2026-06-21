@@ -4,12 +4,11 @@ import matplotlib.pyplot as plt
 from problema_3.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, armijo
 
-# ──────────────────────────────────────────────
-# Problema 3 — Item e)
+# Problema 3 — Item e) ──────────────────────────────────────────────
 # Dificuldades encontradas pelo método do gradiente
 # na função de Beale.
 #
-# Hipóteses a investigar:
+# Hipóteses a investigar: ──────────────────────────────────────────────
 # 1) Regiões muito "planas" (gradiente pequeno) longe do ótimo
 #    fazem o GD avançar lentamente, mesmo sem mal condicionamento
 #    no sentido clássico.
@@ -19,7 +18,6 @@ from problema_1.item_b import gradiente_descendente, armijo
 #    o que não afeta diretamente o GD (que sempre usa -gradiente),
 #    mas pode gerar passos de Armijo muito pequenos perto de
 #    platôs/inflexões.
-# ──────────────────────────────────────────────
 
 x0 = np.array([1.0, 1.0])
 r = gradiente_descendente(f, grad_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4)
@@ -31,10 +29,9 @@ print(f"\nGD + Armijo a partir de x0=(1,1): {r['n_iter']} iterações até conve
 print(f"(Para comparação, no Problema 1 com κ=1000, Armijo precisou de 7304 iterações")
 print(f" SEM exigir nada de não-convexidade — aqui a dificuldade é de outra natureza.)")
 
-# ──────────────────────────────────────────────
-# 1) Evolução do tamanho do passo (alpha) ao longo das iterações
+# 1) Evolução do tamanho do passo (alpha) ao longo das iterações ──────────────────────────────────────────────
 #    -> revela platôs onde alpha precisa cair muito
-# ──────────────────────────────────────────────
+
 def gd_com_historico_alpha(f, grad, x0, tol=1e-6, max_iter=1000,
                            alpha0=1.0, sigma=0.5, c=1e-4):
     x = x0.copy().astype(float)
@@ -60,10 +57,9 @@ def gd_com_historico_alpha(f, grad, x0, tol=1e-6, max_iter=1000,
 
 alphas, gnorms, traj = gd_com_historico_alpha(f, grad_f, x0)
 
-# ──────────────────────────────────────────────
-# 2) Identificar "platôs" - trechos onde ‖∇f‖ varia pouco
+# 2) Identificar "platôs" - trechos onde ‖∇f‖ varia pouco ──────────────────────────────────────────────
 #    por muitas iterações (estagnação)
-# ──────────────────────────────────────────────
+
 janela = 50
 variacao = np.array([
     abs(gnorms[i+janela] - gnorms[i]) / (gnorms[i] + 1e-12)
@@ -80,9 +76,8 @@ else:
     print(f"  que varia entre {alphas.min():.4f} e {alphas.max():.4f} a cada iteração,")
     print("  pois a curvatura da função muda de direção ao longo do vale sinuoso.")
 
-# ──────────────────────────────────────────────
-# Figura 1 — alpha e ‖∇f‖ ao longo das iterações
-# ──────────────────────────────────────────────
+# Figura 1 — alpha e ‖∇f‖ ao longo das iterações ──────────────────────────────────────────────
+
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 fig.suptitle("Problema 3 — Item e)  Dificuldades do GD: passo e estagnação", fontsize=12)
 
@@ -103,10 +98,9 @@ plt.tight_layout()
 plt.savefig("prob3_e_dificuldades_passo.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Trajetória completa sobre a superfície de níveis,
+# Figura 2 — Trajetória completa sobre a superfície de níveis, ──────────────────────────────────────────────
 #            destacando zonas de baixo gradiente (relevo "plano")
-# ──────────────────────────────────────────────
+
 X  = np.linspace(-1, 4.5, 600)
 Y  = np.linspace(-1, 4.5, 600)
 Xg, Yg = np.meshgrid(X, Y)
@@ -143,9 +137,8 @@ plt.tight_layout()
 plt.savefig("prob3_e_relevo.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Discussão textual
-# ──────────────────────────────────────────────
+# Discussão textual ──────────────────────────────────────────────
+
 print("\n" + "=" * 75)
 print("DISCUSSÃO — Dificuldades do método do gradiente na função de Beale")
 print("=" * 75)

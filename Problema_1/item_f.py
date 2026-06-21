@@ -5,9 +5,8 @@ from problema_1.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, passo_constante, armijo, backtracking
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Item f) Comparação GD vs Newton
-# ──────────────────────────────────────────────
+# Item f) Comparação GD vs Newton ──────────────────────────────────────────────
+
 x0 = np.array([1.0, 1.0])
 
 resultados = {
@@ -36,9 +35,8 @@ estilos = {
     "Newton + Backtracking": ("tab:green",  "--", "^"),
 }
 
-# ──────────────────────────────────────────────
-# Tabela comparativa completa
-# ──────────────────────────────────────────────
+# Tabela comparativa completa ──────────────────────────────────────────────
+
 print("=" * 90)
 print("Problema 1 — Item f)  Comparação: Gradiente Descendente vs Newton")
 print("=" * 90)
@@ -56,10 +54,10 @@ iter_nt  = np.mean([r["n_iter"] for k, r in resultados.items() if k.startswith("
 print(f"\nMédia de iterações — GD: {iter_gd:.0f}  |  Newton: {iter_nt:.0f}")
 print(f"GD precisa de ~{iter_gd/iter_nt:.0f}x mais iterações que Newton.")
 
-# ──────────────────────────────────────────────
-# Figura 1 — Convergência: f(xₖ) e ‖∇f‖ vs iteração
+
+# Figura 1 — Convergência: f(xₖ) e ‖∇f‖ vs iteração ──────────────────────────────────────────────
 #            (escala log no eixo x para ver Newton)
-# ──────────────────────────────────────────────
+
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 fig.suptitle("Problema 1 — Item f)  GD vs Newton: Convergência", fontsize=13)
 
@@ -96,10 +94,9 @@ plt.tight_layout()
 plt.savefig("prob1_f_convergencia_gd_vs_newton.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Zoom nas primeiras 20 iterações
+# Figura 2 — Zoom nas primeiras 20 iterações ──────────────────────────────────────────────
 #            para ver a diferença inicial
-# ──────────────────────────────────────────────
+
 fig2, axes2 = plt.subplots(1, 2, figsize=(14, 5))
 fig2.suptitle("Problema 1 — Item f)  GD vs Newton: Zoom nas primeiras 20 iterações",
               fontsize=13)
@@ -131,9 +128,8 @@ plt.tight_layout()
 plt.savefig("prob1_f_zoom_primeiras_iteracoes.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 3 — Curvas de nível: GD vs Newton lado a lado
-# ──────────────────────────────────────────────
+# Figura 3 — Curvas de nível: GD vs Newton lado a lado ──────────────────────────────────────────────
+
 X  = np.linspace(-1.1, 1.1, 400)
 Y  = np.linspace(-1.1, 1.1, 400)
 Xg, Yg = np.meshgrid(X, Y)
@@ -171,5 +167,3 @@ for ax, (familia, nomes) in zip(axes3, familias.items()):
 plt.tight_layout()
 plt.savefig("prob1_f_trajetorias_gd_vs_newton.png", dpi=150)
 plt.close()
-
-print("\nGráficos salvos com sucesso.")

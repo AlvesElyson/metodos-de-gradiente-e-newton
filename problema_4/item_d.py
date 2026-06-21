@@ -3,13 +3,11 @@ import matplotlib.pyplot as plt
 
 from problema_4.item_a import f, grad_f, hess_f
 
-# ──────────────────────────────────────────────
-# Problema 4 — Item d)
+# Problema 4 — Item d) ──────────────────────────────────────────────
 # Verificar experimentalmente se a direção de Newton
 #   d = -H^{-1} g
 # é sempre uma direção de descida, isto é, se
 #   g^T d < 0
-# ──────────────────────────────────────────────
 
 def direcao_newton(x):
     """Retorna a direção de Newton e o produto g^T d em x, ou None se H for singular."""
@@ -20,9 +18,8 @@ def direcao_newton(x):
     d = np.linalg.solve(H, -g)
     return d, g @ d, g, H
 
-# ──────────────────────────────────────────────
-# 1) Teste nos três pontos do item c)
-# ──────────────────────────────────────────────
+# 1) Teste nos três pontos do item c) ──────────────────────────────────────────────
+
 pontos_c = {
     "(0, 0)":   np.array([0.0, 0.0]),
     "(2, -2)":  np.array([2.0, -2.0]),
@@ -44,10 +41,9 @@ for nome, x0 in pontos_c.items():
         descida = "SIM" if gd < 0 else "NÃO"
         print(f"{nome:<12} {gd:>12.4f} {str(np.round(autoval,3)):>22}   {descida}")
 
-# ──────────────────────────────────────────────
-# 2) Teste sistemático: varrer uma grade de pontos e verificar
+# 2) Teste sistemático: varrer uma grade de pontos e verificar ──────────────────────────────────────────────
 #    a proporção de pontos onde Newton é direção de descida
-# ──────────────────────────────────────────────
+
 X_test = np.linspace(-8, 6, 80)
 Y_test = np.linspace(-8, 6, 80)
 
@@ -73,9 +69,8 @@ print(f"\n→ CONCLUSÃO: a direção de Newton NÃO é sempre de descida nesta 
 print(f"  Isso ocorre porque a Hessiana é indefinida em regiões onde sin(x+y) > 0")
 print(f"  (autovalor λ2 = -2sin(x+y) < 0 nesses casos).")
 
-# ──────────────────────────────────────────────
-# Figura 1 — Mapa de g^T d no plano (x,y)
-# ──────────────────────────────────────────────
+# Figura 1 — Mapa de g^T d no plano (x,y) ──────────────────────────────────────────────
+
 fig, ax = plt.subplots(figsize=(8, 7))
 fig.suptitle("Problema 4 — Item d)  Mapa de g^T·d (direção de Newton)", fontsize=12)
 
@@ -96,9 +91,8 @@ plt.tight_layout()
 plt.savefig("prob4_d_mapa_descida.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Curva sin(x+y)=0 que separa as regiões
-# ──────────────────────────────────────────────
+# Figura 2 — Curva sin(x+y)=0 que separa as regiões ──────────────────────────────────────────────
+
 X  = np.linspace(-8, 6, 500)
 Y  = np.linspace(-8, 6, 500)
 Xg, Yg = np.meshgrid(X, Y)

@@ -5,10 +5,9 @@ from problema_3.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, armijo
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 3 — Item b)
+# Problema 3 — Item b) ──────────────────────────────────────────────
 # GD + Armijo e Newton, testados em x0 = (1,1)
-# ──────────────────────────────────────────────
+
 x0 = np.array([1.0, 1.0])
 
 metodos = {
@@ -18,9 +17,8 @@ metodos = {
         f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
 }
 
-# ──────────────────────────────────────────────
-# Tabela de resultados
-# ──────────────────────────────────────────────
+# Tabela de resultados ──────────────────────────────────────────────
+
 print("=" * 80)
 print("Problema 3 — Item b)  Função de Beale  (x0 = [1, 1])")
 print("=" * 80)
@@ -42,9 +40,8 @@ print("fazendo o algoritmo estagnar em x_final = (0, 1), que NÃO é o mínimo")
 print("global. Isso ilustra uma limitação clássica do método de Newton puro")
 print("em regiões não-convexas (será discutido no item e).")
 
-# ──────────────────────────────────────────────
-# Figura 1 — Convergência
-# ──────────────────────────────────────────────
+# Figura 1 — Convergência ──────────────────────────────────────────────
+
 cores = ["tab:blue", "tab:orange"]
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 fig.suptitle("Problema 3 — Item b)  Convergência (x0 = [1, 1])", fontsize=13)
@@ -68,9 +65,8 @@ plt.tight_layout()
 plt.savefig("prob3_b_convergencia.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Curvas de nível + trajetórias
-# ──────────────────────────────────────────────
+# Figura 2 — Curvas de nível + trajetórias ──────────────────────────────────────────────
+
 X  = np.linspace(-1, 4, 500)
 Y  = np.linspace(-1, 2, 500)
 Xg, Yg = np.meshgrid(X, Y)

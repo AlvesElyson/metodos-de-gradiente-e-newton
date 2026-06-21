@@ -5,13 +5,12 @@ from item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, passo_constante, armijo, backtracking
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 2 — Item b)
+# Problema 2 — Item b) ──────────────────────────────────────────────
 # Ponto inicial x0 = (0, 0)
-# ──────────────────────────────────────────────
+
 x0 = np.array([0.0, 0.0])
 
-# Passo constante ótimo: α* = 2/(λ_min + λ_max) = 2/(2+18) = 0.1
+# Passo constante ótimo: α* = 2/(λ_min + λ_max) = 2/(2+18) = 0.1 ──────────────────────────────────────────────
 alpha_otimo = 2.0 / (2.0 + 18.0)
 
 metodos = {
@@ -23,10 +22,9 @@ metodos = {
         f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
 }
 
-# ──────────────────────────────────────────────
-# Tabela de resultados
-# ──────────────────────────────────────────────
-print("=" * 80)
+# Tabela de resultados ──────────────────────────────────────────────
+
+("=" * 80)
 print("Problema 2 — Item b)  (x0 = [0, 0])")
 print("=" * 80)
 print(f"{'Método':<25} {'Iter':>5} {'f*':>14} {'‖∇f‖':>14} "
@@ -37,9 +35,8 @@ for nome, r in metodos.items():
           f"{r['gnorm_final']:>14.6e} {r['n_evals_f']:>8} "
           f"{r['n_evals_g']:>8} {r['n_evals_H']:>8}")
 
-# ──────────────────────────────────────────────
-# Figura 1 — Convergência
-# ──────────────────────────────────────────────
+# Figura 1 — Convergência ──────────────────────────────────────────────
+
 cores = ["tab:blue", "tab:orange", "tab:green"]
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 fig.suptitle("Problema 2 — Item b)  Convergência dos métodos", fontsize=13)
@@ -62,9 +59,8 @@ plt.tight_layout()
 plt.savefig("prob2_b_convergencia.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Curvas de nível + trajetórias
-# ──────────────────────────────────────────────
+# Figura 2 — Curvas de nível + trajetórias ──────────────────────────────────────────────
+
 X  = np.linspace(-0.5, 2.5, 400)
 Y  = np.linspace(-0.5, 4.0, 400)
 Xg, Yg = np.meshgrid(X, Y)

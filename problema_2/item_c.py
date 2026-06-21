@@ -4,10 +4,9 @@ from item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, passo_constante, armijo
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 2 — Item c)
+# Problema 2 — Item c) ──────────────────────────────────────────────
 # Ponto inicial: x0 = (0, 0)^T
-# ──────────────────────────────────────────────
+
 x0 = np.array([0.0, 0.0])
 
 alpha_otimo = 2.0 / (2.0 + 18.0)  # 2/(λ_min + λ_max)

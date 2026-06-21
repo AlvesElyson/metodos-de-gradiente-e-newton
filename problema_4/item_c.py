@@ -5,10 +5,9 @@ from problema_4.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, armijo
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 4 — Item c)
+# Problema 4 — Item c) ──────────────────────────────────────────────
 # Pontos iniciais: (0,0), (2,-2), (-3,-3)
-# ──────────────────────────────────────────────
+
 pontos_iniciais = {
     "(0, 0)":   np.array([0.0, 0.0]),
     "(2, -2)":  np.array([2.0, -2.0]),
@@ -24,9 +23,8 @@ for nome, x0 in pontos_iniciais.items():
             f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
     }
 
-# ──────────────────────────────────────────────
-# Tabela de resultados
-# ──────────────────────────────────────────────
+# Tabela de resultados ──────────────────────────────────────────────
+
 print("=" * 95)
 print("Problema 4 — Item c)  Resultados para os três pontos iniciais")
 print("=" * 95)
@@ -41,9 +39,8 @@ for nome_x0, metodos in resultados.items():
               f"{r['gnorm_final']:>12.4e}   {str(np.round(r['x_opt'],3)):<16} {status}")
     print("-" * 95)
 
-# ──────────────────────────────────────────────
-# Figura — Curvas de nível + trajetórias para cada x0
-# ──────────────────────────────────────────────
+# Figura — Curvas de nível + trajetórias para cada x0 ──────────────────────────────────────────────
+
 X  = np.linspace(-8, 6, 600)
 Y  = np.linspace(-8, 6, 600)
 Xg, Yg = np.meshgrid(X, Y)

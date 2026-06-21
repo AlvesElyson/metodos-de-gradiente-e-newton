@@ -3,9 +3,7 @@ import matplotlib.pyplot as plt
 
 from problema_1.item_a import f, grad_f, hess_f
 
-# ──────────────────────────────────────────────
-# Estratégias de passo
-# ──────────────────────────────────────────────
+# Estratégias de passo  ──────────────────────────────────────────────
 
 def passo_constante(x, d, f, grad, alpha=9.99e-4, **kwargs):
     """Passo constante α ≈ 2/(λ_min + λ_max) = 1/1001 ≈ 9.99e-4 (valor ótimo teórico)."""
@@ -41,9 +39,7 @@ def backtracking(x, d, f, grad, alpha0=1.0, rho=0.8, c=1e-4, **kwargs):
             break
     return alpha, evals
 
-# ──────────────────────────────────────────────
-# Gradiente Descendente genérico
-# ──────────────────────────────────────────────
+# Gradiente Descendente genérico ──────────────────────────────────────────────
 
 def gradiente_descendente(f, grad, x0, step_strategy,
                           tol=1e-6, max_iter=1000, **step_kwargs):
@@ -80,9 +76,8 @@ def gradiente_descendente(f, grad, x0, step_strategy,
         "hist_x":      np.array(hist_x),
     }
 
-# ──────────────────────────────────────────────
-# Execução
-# ──────────────────────────────────────────────
+# Execução ──────────────────────────────────────────────
+
 if __name__ == "__main__":
     x0 = np.array([1.0, 1.0])
 
@@ -95,9 +90,8 @@ if __name__ == "__main__":
             f, grad_f, x0, backtracking, alpha0=1.0, rho=0.8, c=1e-4),
     }
 
-    # ──────────────────────────────────────────────
-    # Tabela de resultados
-    # ──────────────────────────────────────────────
+    # Tabela de resultados ──────────────────────────────────────────────
+
     print("=" * 75)
     print("Problema 1 — Item b)  Gradiente Descendente  (x0 = [1, 1])")
     print("=" * 75)
@@ -107,9 +101,9 @@ if __name__ == "__main__":
         print(f"{nome:<30} {r['n_iter']:>6} {r['f_opt']:>12.4e} "
               f"{r['gnorm_final']:>12.4e} {r['n_evals_f']:>8} {r['n_evals_g']:>8}")
 
-    # ──────────────────────────────────────────────
-    # Figura 1 — Convergência (f e ‖∇f‖ vs iteração)
-    # ──────────────────────────────────────────────
+
+    # Figura 1 — Convergência (f e ‖∇f‖ vs iteração) ──────────────────────────────────────────────
+
     cores = ["tab:blue", "tab:orange", "tab:green"]
     fig, axes = plt.subplots(1, 2, figsize=(13, 5))
     fig.suptitle("Problema 1 — Item b)  Gradiente Descendente", fontsize=13)
@@ -132,9 +126,8 @@ if __name__ == "__main__":
     plt.savefig("prob1_b_convergencia.png", dpi=150)
     plt.close()
 
-    # ──────────────────────────────────────────────
-    # Figura 2 — Curvas de nível + trajetórias
-    # ──────────────────────────────────────────────
+    # Figura 2 — Curvas de nível + trajetórias ──────────────────────────────────────────────
+
     fig2, axes2 = plt.subplots(1, 3, figsize=(15, 5))
     fig2.suptitle("Problema 1 — Item b)  Curvas de nível + Trajetórias", fontsize=13)
 
@@ -160,5 +153,3 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.savefig("prob1_b_trajetorias.png", dpi=150)
     plt.close()
-
-    print("\nGráficos salvos com sucesso.")

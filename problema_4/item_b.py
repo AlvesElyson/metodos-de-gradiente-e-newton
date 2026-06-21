@@ -5,11 +5,10 @@ from problema_4.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, armijo
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
 # Problema 4 — Item b)
 # Testando GD+Armijo e Newton+Armijo no ponto x0 = (0,0)
 # (os demais pontos serão sistematicamente cobertos no item c)
-# ──────────────────────────────────────────────
+
 x0 = np.array([0.0, 0.0])
 
 metodos = {
@@ -19,9 +18,8 @@ metodos = {
         f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
 }
 
-# ──────────────────────────────────────────────
 # Tabela de resultados
-# ──────────────────────────────────────────────
+
 print("=" * 80)
 print("Problema 4 — Item b)  (x0 = [0, 0])")
 print("=" * 80)
@@ -34,9 +32,8 @@ for nome, r in metodos.items():
           f"{r['n_evals_g']:>8} {r['n_evals_H']:>8}")
     print(f"  x_final = {r['x_opt']}   status: {r.get('status', 'N/A')}")
 
-# ──────────────────────────────────────────────
 # Figura 1 — Convergência
-# ──────────────────────────────────────────────
+
 cores = ["tab:blue", "tab:orange"]
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 fig.suptitle("Problema 4 — Item b)  Convergência (x0 = [0, 0])", fontsize=13)
@@ -60,9 +57,8 @@ plt.tight_layout()
 plt.savefig("prob4_b_convergencia.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
 # Figura 2 — Curvas de nível + trajetórias
-# ──────────────────────────────────────────────
+
 X  = np.linspace(-6, 6, 500)
 Y  = np.linspace(-6, 6, 500)
 Xg, Yg = np.meshgrid(X, Y)
@@ -86,5 +82,3 @@ for ax, (nome, r) in zip(axes2, metodos.items()):
 plt.tight_layout()
 plt.savefig("prob4_b_trajetorias.png", dpi=150)
 plt.close()
-
-print("\nGráficos salvos com sucesso.")

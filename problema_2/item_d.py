@@ -5,9 +5,8 @@ from item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, passo_constante, armijo, backtracking
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 2 — Item d)  Comparação de iterações
-# ──────────────────────────────────────────────
+# Problema 2 — Item d)  Comparação de iterações ──────────────────────────────────────────────
+
 x0 = np.array([0.0, 0.0])
 alpha_otimo = 2.0 / (2.0 + 18.0)
 
@@ -22,9 +21,8 @@ metodos = {
         f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
 }
 
-# ──────────────────────────────────────────────
-# Tabela comparativa
-# ──────────────────────────────────────────────
+# Tabela comparativa ──────────────────────────────────────────────
+
 print("=" * 85)
 print("Problema 2 — Item d)  Comparação do número de iterações  (x0 = [0, 0])")
 print("=" * 85)
@@ -36,9 +34,8 @@ for nome, r in metodos.items():
           f"{r['gnorm_final']:>14.6e} {r['n_evals_f']:>8} "
           f"{r['n_evals_g']:>8} {r['n_evals_H']:>8}")
 
-# ──────────────────────────────────────────────
-# Figura 1 — f(xₖ) e ‖∇f‖ vs iteração
-# ──────────────────────────────────────────────
+# Figura 1 — f(xₖ) e ‖∇f‖ vs iteração ──────────────────────────────────────────────
+
 cores = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 fig.suptitle("Problema 2 — Item d)  Comparação de convergência", fontsize=13)
@@ -65,9 +62,8 @@ plt.tight_layout()
 plt.savefig("prob2_d_convergencia.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Barras: iterações e avaliações
-# ──────────────────────────────────────────────
+# Figura 2 — Barras: iterações e avaliações ──────────────────────────────────────────────
+
 nomes   = list(metodos.keys())
 iters   = [r["n_iter"]   for r in metodos.values()]
 aval_f  = [r["n_evals_f"] for r in metodos.values()]
@@ -102,9 +98,8 @@ plt.tight_layout()
 plt.savefig("prob2_d_comparacao_barras.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 3 — Curvas de nível + todas as trajetórias
-# ──────────────────────────────────────────────
+# Figura 3 — Curvas de nível + todas as trajetórias ──────────────────────────────────────────────
+
 X  = np.linspace(-0.5, 2.5, 400)
 Y  = np.linspace(-0.5, 4.0, 400)
 Xg, Yg = np.meshgrid(X, Y)

@@ -30,9 +30,8 @@ for nome, x0 in pontos_iniciais.items():
             f, grad_f, hess_f, x0, armijo, alpha0=1.0, sigma=0.5, c=1e-4),
     }
 
-# ──────────────────────────────────────────────
-# Tabela comparativa
-# ──────────────────────────────────────────────
+# Tabela comparativa ──────────────────────────────────────────────
+
 x_star = np.array([3.0, 0.5])
 print("=" * 95)
 print("Problema 3 — Item d)  Influência do ponto inicial")
@@ -54,9 +53,8 @@ for nome_x0, metodos in resultados.items():
               f"{r['gnorm_final']:>12.4e}   {str(np.round(r['x_opt'],3)):<14} {status}")
     print("-" * 95)
 
-# ──────────────────────────────────────────────
-# Figura — Curvas de nível com trajetórias dos 3 pontos iniciais
-# ──────────────────────────────────────────────
+# Figura — Curvas de nível com trajetórias dos 3 pontos iniciais ──────────────────────────────────────────────
+
 X  = np.linspace(-2, 4.5, 500)
 Y  = np.linspace(-1, 4.5, 500)
 Xg, Yg = np.meshgrid(X, Y)
@@ -91,9 +89,8 @@ plt.tight_layout()
 plt.savefig("prob3_d_influencia_x0.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura — Convergência para cada ponto inicial (GD)
-# ──────────────────────────────────────────────
+# Figura — Convergência para cada ponto inicial (GD) ──────────────────────────────────────────────
+
 fig2, axes2 = plt.subplots(1, 2, figsize=(13, 5))
 fig2.suptitle("Problema 3 — Item d)  Convergência do GD+Armijo por ponto inicial", fontsize=12)
 

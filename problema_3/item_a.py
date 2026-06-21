@@ -1,10 +1,8 @@
 import numpy as np
 
-# ──────────────────────────────────────────────
-# Problema 3 — Item a)
+# Problema 3 — Item a) ──────────────────────────────────────────────
 # f(x, y) = (1.5 - x + xy)² + (2.25 - x + xy²)² + (2.625 - x + xy³)²
 # (Função de Beale — não-convexa, mínimo global em (3, 0.5))
-# ──────────────────────────────────────────────
 
 def f(p):
     x, y = p[0], p[1]
@@ -49,9 +47,8 @@ def hess_f(p):
     return np.array([[d2f_dx2,  d2f_dxdy],
                      [d2f_dxdy, d2f_dy2]])
 
-# ──────────────────────────────────────────────
-# Validação numérica (diferenças finitas)
-# ──────────────────────────────────────────────
+# Validação numérica (diferenças finitas) ──────────────────────────────────────────────
+
 def grad_numerico(func, p, h=1e-6):
     n = len(p)
     g = np.zeros(n)
@@ -73,36 +70,37 @@ def hess_numerico(func, p, h=1e-5):
             H[i, j] = (func(pij) - func(pi) - func(pj) + func(p0)) / (h*h)
     return H
 
-# ──────────────────────────────────────────────
-# Avaliação em x0 = (1, 1) e x0 = (3, 0.5)
-# ──────────────────────────────────────────────
-print("=" * 65)
-print("Problema 3 — Item a)  Função de Beale")
-print("=" * 65)
 
-for x0 in [np.array([1.0, 1.0]), np.array([3.0, 0.5])]:
-    print(f"\n--- Ponto x0 = {x0} ---")
-    print(f"f(x0) = {f(x0):.6f}")
+# Avaliação em x0 = (1, 1) e x0 = (3, 0.5) ──────────────────────────────────────────────
 
-    g_anal = grad_f(x0)
-    g_num  = grad_numerico(f, x0)
-    print(f"∇f analítico = {g_anal}")
-    print(f"∇f numérico  = {g_num}")
-    print(f"Diferença max = {np.max(np.abs(g_anal - g_num)):.2e}")
+if __name__ == "__main__":
+    print("=" * 65)
+    print("Problema 3 — Item a)  Função de Beale")
+    print("=" * 65)
 
-    H_anal = hess_f(x0)
-    H_num  = hess_numerico(f, x0)
-    print(f"H analítica =\n{H_anal}")
-    print(f"H numérica  =\n{H_num}")
-    print(f"Diferença max = {np.max(np.abs(H_anal - H_num)):.2e}")
+    for x0 in [np.array([1.0, 1.0]), np.array([3.0, 0.5])]:
+        print(f"\n--- Ponto x0 = {x0} ---")
+        print(f"f(x0) = {f(x0):.6f}")
 
-    if np.linalg.det(H_anal) != 0:
-        autovalores = np.linalg.eigvalsh(H_anal)
-        print(f"Autovalores de H: {autovalores}")
-        if autovalores.min() > 0:
-            kappa = autovalores.max() / autovalores.min()
-            print(f"κ(H) = {kappa:.2f}  (Hessiana definida positiva)")
-        else:
-            print("Hessiana NÃO é definida positiva neste ponto (indefinida).")
+        g_anal = grad_f(x0)
+        g_num  = grad_numerico(f, x0)
+        print(f"∇f analítico = {g_anal}")
+        print(f"∇f numérico  = {g_num}")
+        print(f"Diferença max = {np.max(np.abs(g_anal - g_num)):.2e}")
 
-print(f"\nMínimo global conhecido: x* = (3, 0.5),  f(x*) = 0")
+        H_anal = hess_f(x0)
+        H_num  = hess_numerico(f, x0)
+        print(f"H analítica =\n{H_anal}")
+        print(f"H numérica  =\n{H_num}")
+        print(f"Diferença max = {np.max(np.abs(H_anal - H_num)):.2e}")
+
+        if np.linalg.det(H_anal) != 0:
+            autovalores = np.linalg.eigvalsh(H_anal)
+            print(f"Autovalores de H: {autovalores}")
+            if autovalores.min() > 0:
+                kappa = autovalores.max() / autovalores.min()
+                print(f"κ(H) = {kappa:.2f}  (Hessiana definida positiva)")
+            else:
+                print("Hessiana NÃO é definida positiva neste ponto (indefinida).")
+
+    print(f"\nMínimo global conhecido: x* = (3, 0.5),  f(x*) = 0")

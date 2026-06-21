@@ -4,11 +4,9 @@ from problema_4.item_a import f, grad_f, hess_f
 from problema_1.item_b import gradiente_descendente, armijo
 from problema_1.item_c import newton
 
-# ──────────────────────────────────────────────
-# Problema 4 — Item e)
+# Problema 4 — Item e) ──────────────────────────────────────────────
 # Discussão consolidada dos resultados observados
 # nos itens a) a d).
-# ──────────────────────────────────────────────
 
 pontos_iniciais = {
     "(0, 0)":   np.array([0.0, 0.0]),

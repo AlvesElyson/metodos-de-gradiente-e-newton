@@ -51,9 +51,8 @@ for kappa in kappas:
         "alpha_opt": alpha_opt,
     }
 
-# ──────────────────────────────────────────────
-# Tabela de resultados
-# ──────────────────────────────────────────────
+# Tabela de resultados ──────────────────────────────────────────────
+
 print("=" * 75)
 print("Problema 1 — Item e)  Efeito do condicionamento na convergência (GD + Armijo)")
 print("=" * 75)
@@ -63,9 +62,8 @@ for kappa, r in resultados_kappa.items():
     print(f"{kappa:>8} {r['q_teorico']:>12.6f} {r['n_iter']:>10} "
           f"{r['f_opt']:>14.4e} {r['gnorm_final']:>14.4e}")
 
-# ──────────────────────────────────────────────
-# Figura 1 — ‖∇f(xₖ)‖ vs iteração para cada κ
-# ──────────────────────────────────────────────
+# Figura 1 — ‖∇f(xₖ)‖ vs iteração para cada κ ──────────────────────────────────────────────
+
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 fig.suptitle("Problema 1 — Item e)  Efeito do condicionamento na velocidade de convergência",
              fontsize=12)
@@ -94,9 +92,8 @@ plt.tight_layout()
 plt.savefig("prob1_e_efeito_kappa.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 2 — Iterações necessárias vs κ
-# ──────────────────────────────────────────────
+# Figura 2 — Iterações necessárias vs κ ──────────────────────────────────────────────
+
 kappas_arr  = np.array(list(resultados_kappa.keys()))
 iters_arr   = np.array([r["n_iter"] for r in resultados_kappa.values()])
 q_arr       = np.array([r["q_teorico"] for r in resultados_kappa.values()])
@@ -129,9 +126,8 @@ plt.tight_layout()
 plt.savefig("prob1_e_iters_vs_kappa.png", dpi=150)
 plt.close()
 
-# ──────────────────────────────────────────────
-# Figura 3 — Curvas de nível para κ = 1, 10, 100, 1000
-# ──────────────────────────────────────────────
+# Figura 3 — Curvas de nível para κ = 1, 10, 100, 1000 ──────────────────────────────────────────────
+
 kappas_plot = [1, 10, 100, 1000]
 fig3, axes3 = plt.subplots(1, 4, figsize=(18, 4))
 fig3.suptitle("Problema 1 — Item e)  Curvas de nível f_κ(x,y) = κx² + y²  para diferentes κ",
@@ -161,5 +157,3 @@ for ax, kappa in zip(axes3, kappas_plot):
 plt.tight_layout()
 plt.savefig("prob1_e_curvas_nivel_kappa.png", dpi=150)
 plt.close()
-
-print("\nGráficos salvos com sucesso.")
